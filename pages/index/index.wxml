@@ -1,0 +1,86 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <block wx:if="{{(!hasUserInfo && canIUse) || !fromLogin}}">
+      <view class="login">
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录*-*获取 </button>
+        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 天气*-*信息 </button>
+      </view>
+      <!-- <view class="cricle-ani">
+        <view class="cir" animation="{{animat}}"></view>
+      </view> -->
+      <view wx:for="{{pics}}" wx:key="index2" >
+        <image src="{{item}}" class="pics-list" />
+        <icon type="clear" class="uploadImg-error" size="18" data-img="{{item}}" bindtap='deleteImg'/>
+      </view>
+      <button class="{{pics.length ? 'upload-l' : 'upload-h'}}" bindtap="uploadImage">
+      {{pics.length ? ' 已绑定背景图片 ' : ' 请选择背景图片 '}}
+      </button>
+    </block>
+    <block wx:else>
+      <image class="userinfo-avatar" bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <navigator open-type="exit" target="miniProgram">{{userInfo.nickName}}</navigator>
+    </block>
+  </view>
+  <view class="weather" wx:if="{{!(!hasUserInfo && canIUse) && fromLogin}}">
+    <image wx:if="{{isShow}}" class='background' src="../images/bg.jpg" mode="scaleToFill" />
+    <view wx:for="{{pics}}" wx:key="index1" >
+      <image src="{{item}}" class="background" mode="scaleToFill" />
+    </view>
+    <view class="top">
+      <view class="city">
+        {{city}}
+      </view>
+      <view class="search">
+        <input placeholder="请输入城市" bindinput="bindKeyInput" placeholder-style="color: white" />
+        <view class="search-icon" bindtap="clickSearch">
+          <icon type="search" size="18" color="white" />
+        </view>
+      </view>
+    </view>
+    <view class="center">
+      <view class="tmp">
+        {{tmp}}<span class="text">℃</span>
+      </view>
+      <image mode="widthFix" class="cond-image" src="https://moyv.top/wechat/images/weather/{{imgsrc}}.png" />
+    </view>
+    <view class="bottom">
+      <view>{{wind_dir}} {{wind_sc}}级</view>
+      <view>湿度 {{hum}}%</view>
+      <view>气压 {{pres}}Pa</view>
+    </view>
+    <view class="days">
+      <view class="day-title">24小时天气状况</view>
+      <scroll-view scroll-x="true" class="day">
+        <view class="h-item" wx:for="{{hourly_arr}}" wx:key="index">
+          <text class="h_time">{{item.h_time}}</text>
+          <view class="d-img">
+            <image mode="widthFix" src="https://moyv.top/wechat/images/weather/{{item.h_imgsrc}}.png" />
+          </view>
+          <text>{{item.h_tmp}}</text>
+          <text class="d-wind-sc">{{item.h_wind_dir}}</text>
+          <text class="d-wind-sc">{{item.h_wind_sc}}</text>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="days">
+      <view class="day-title">未来1周天气状况</view>
+      <scroll-view scroll-x="true" class="day">
+        <view class="d-item" wx:for="{{daily_arr}}" wx:key="index">
+          <text class="d-txt">{{item.d_txt}}</text>
+          <text class="d-date">{{item.d_date}}</text>
+          <view class="d-img">
+            <image mode="widthFix" src="http://cddn.huyahaha.com/tianqiapi/skin/qq/{{item.d_imgsrc}}.png" />
+          </view>
+          <text>{{item.tmp_max}}/{{item.tmp_min}}</text>
+          <view class="d-img">
+            <image mode="widthFix" src="https://moyv.top/wechat/images/weather/{{item.d_imgsrc_n}}.png" />
+          </view>
+          <text class="d-wind-sc">{{item.wind_dir}}</text>
+          <text class="d-wind-sc">{{item.wind_sc}}</text>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+

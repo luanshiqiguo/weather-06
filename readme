@@ -1,0 +1,13 @@
+data/json.js中包含天气状况string: code的对应关系
+
+天气接口：
+和风天气（免费版只有未来三天天气状况）
+https://dev.heweather.com/docs/api/weather
+天气API（）
+https://www.tianqiapi.com
+
+在线天气图标：
+1.根据天气状态码生成
+https://moyv.top/wechat/images/weather/{{wea_code}}.png
+2.根据天气状况字符串
+http://cddn.huyahaha.com/tianqiapi/skin/qq/{{wea_string}}.png
