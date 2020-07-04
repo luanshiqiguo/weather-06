@@ -180,16 +180,17 @@ button::after {
 
 .cricle-ani {
   position: relative;
-  top: 100rpx;
   height: 0;
+  top: -200rpx;
+  left: -490rpx;
   z-index: -1;
 }
 .cir {
-  width: 0;
-  height: 0;
-  border: 0.1rpx solid gray;
-  border-radius: 50%;
-  z-index: -2;
+  width: 250rpx;
+  height: 250rpx;
+  /* border: 0.1rpx solid gray; */
+  background: url('../images/101.png');
+  /* border-radius: 50%; */
 }
 
 .pics-list{
@@ -210,5 +211,10 @@ button::after {
   margin-top: 320rpx;
 }
 
-
+.choose-bg{
+  font-size: 25rpx;
+  /* color: gray; */
+  text-align: center;
+  margin-bottom: 32rpx;
+}
 

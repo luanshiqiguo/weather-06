@@ -6,9 +6,6 @@
         <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录*-*获取 </button>
         <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 天气*-*信息 </button>
       </view>
-      <!-- <view class="cricle-ani">
-        <view class="cir" animation="{{animat}}"></view>
-      </view> -->
       <view wx:for="{{pics}}" wx:key="index2" >
         <image src="{{item}}" class="pics-list" />
         <icon type="clear" class="uploadImg-error" size="18" data-img="{{item}}" bindtap='deleteImg'/>
@@ -20,6 +17,10 @@
     <block wx:else>
       <image class="userinfo-avatar" bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <navigator open-type="exit" target="miniProgram">{{userInfo.nickName}}</navigator>
+      <view class="cricle-ani">
+        <!-- <view class="cir" animation="{{animat}}"></view> -->
+        <image class="cir" src="../images/101.png" animation="{{animat}}" />
+      </view>
     </block>
   </view>
   <view class="weather" wx:if="{{!(!hasUserInfo && canIUse) && fromLogin}}">
@@ -81,6 +82,7 @@
         </view>
       </scroll-view>
     </view>
+    <view class="choose-bg">点击头像可选择背景哦--cyc</view>
   </view>
 </view>
 

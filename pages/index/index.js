@@ -43,7 +43,8 @@ Page({
         }
       })
     }
-    this.getWeather("北京");
+    this.getWeather("北京")
+    this.animatFn()
   },
   getUserInfo: function(e) {
     app.globalData.userInfo = e.detail.userInfo
@@ -180,26 +181,6 @@ Page({
         })
       },
     })
-    var animat = wx.createAnimation({
-      duration: 2000,
-      timingFunction: "linear",
-      delay: 0,
-    })
-    var next = true;
-    setInterval(function(){
-      if(next){
-        animat.width(600).height(600).translateY(-300).step();
-        next = !next;
-      }else{
-        animat.width(0).height(0).translateY(0).step({duration: 0});
-        next = !next;
-      }
-      that.setData({
-        animat: animat
-      })
-    }.bind(this), 0)
-   
-    
   },
   /**删除图片 */
   deleteImg: function(e){
@@ -219,4 +200,25 @@ Page({
       isShow: true
     })
   },
+  animatFn: function(){
+    var animat = wx.createAnimation({
+      timingFunction: "ease",
+      delay: 0,
+    })
+    var next = true;
+    setInterval(() => {
+      if(next){
+        animat.width("50rpx").height("50rpx").translate(200, 20).step({duration: 3500})
+        animat.width("250rpx").height("250rpx").translate(420, 0).step({duration: 3500})
+        next = !next
+      }else{
+        animat.width("50rpx").height("50rpx").translate(200, 20).step({duration: 3500})
+        animat.width("250rpx").height("250rpx").translate(0, 0).step({duration: 3500})
+        next = !next
+      }
+      this.setData({
+        animat: animat.export()
+      })
+    }, 7000)
+  }
 })
