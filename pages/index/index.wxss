@@ -189,7 +189,7 @@ button::after {
   width: 250rpx;
   height: 250rpx;
   /* border: 0.1rpx solid gray; */
-  background: url('../images/101.png');
+  /* background: url('../images/101.png'); */
   /* border-radius: 50%; */
 }
 
