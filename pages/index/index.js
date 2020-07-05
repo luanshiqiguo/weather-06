@@ -20,32 +20,32 @@ Page({
     this.getWeather("北京")
     wx.getSetting({
       success: function(res) {
-          if (res.authSetting['scope.userInfo']) {
-              wx.getUserInfo({
-                  success: function(res) {
-                      // 用户已经授权过,不需要显示授权页面,所以不需要改变 isHide 的值
-                      // 根据自己的需求有其他操作再补充
-                      // 我这里实现的是在用户授权成功后，调用微信的 wx.login 接口，从而获取code
-                      that.setData({
-                        userInfo: res.userInfo
-                      });
-                      if (this.userInfoReadyCallback) {
-                        this.userInfoReadyCallback(res)
-                      }
-                      wx.login({
-                          success: res => {
-                              // 获取到用户的 code 之后：res.code
-                          }
-                      });
-                  }
-              });
-          } else {
-              // 用户没有授权
-              // 改变 isHide 的值，显示授权页面
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: function(res) {
+              // 用户已经授权过,不需要显示授权页面,所以不需要改变 isHide 的值
+              // 根据自己的需求有其他操作再补充
+              // 我这里实现的是在用户授权成功后，调用微信的 wx.login 接口，从而获取code
               that.setData({
-                  isHide: true
+                userInfo: res.userInfo
               });
-          }
+              if (this.userInfoReadyCallback) {
+                this.userInfoReadyCallback(res)
+              }
+              wx.login({
+                success: res => {
+                  // 获取到用户的 code 之后：res.code
+                }
+              });
+            }
+          });
+        } else {
+          // 用户没有授权
+          // 改变 isHide 的值，显示授权页面
+          that.setData({
+            isHide: true
+          });
+        }
       }
     });
     if (app.globalData.userInfo) {
@@ -215,18 +215,19 @@ Page({
     })
   },
   animatFn: function(){
-    var animat = wx.createAnimation({
-      timingFunction: "ease",
-      delay: 0,
-    })
+    
     var next = true;
     setInterval(() => {
+      var animat = wx.createAnimation({
+        timingFunction: "ease",
+        delay: 0,
+      })
       if(next){
-        animat.width("50rpx").height("50rpx").translate(200, 20).step({duration: 3500})
-        animat.width("250rpx").height("250rpx").translate(420, 0).step({duration: 3500})
+        animat.width("50rpx").height("50rpx").translate(230, 20).step({duration: 3500})
+        animat.width("250rpx").height("250rpx").translate(480, 0).step({duration: 3500})
         next = !next
       }else{
-        animat.width("50rpx").height("50rpx").translate(200, 20).step({duration: 3500})
+        animat.width("50rpx").height("50rpx").translate(230, 20).step({duration: 3500})
         animat.width("250rpx").height("250rpx").translate(0, 0).step({duration: 3500})
         next = !next
       }
@@ -255,7 +256,7 @@ Page({
             success: function(res) {
                 // 用户没有授权成功，不需要改变 isHide 的值
                 if (res.confirm) {
-                    console.log('用户点击了“返回授权”');
+                    console.log('点击返回授权');
                 }
             }
         });

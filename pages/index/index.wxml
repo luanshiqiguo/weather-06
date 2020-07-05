@@ -7,6 +7,7 @@
       <view class="cricle-ani">
         <image class="cir" src="../images/101.png" animation="{{animat}}" />
       </view>
+      <image class="cir-bg" src="../images/101.png" />
     </block>
     <block wx:else>
       <view class="login">
@@ -18,7 +19,7 @@
         <icon type="clear" class="uploadImg-error" size="18" data-img="{{item}}" bindtap='deleteImg'/>
       </view>
       <button class="{{pics.length ? 'upload-l' : 'upload-h'}}" bindtap="uploadImage">
-      {{pics.length ? ' 已绑定天气图片 ' : ' 请选择天气图片 '}}
+      {{pics.length ? ' 已绑定背景图片 ' : ' 可选背景图片哦 '}}
       </button>
       <view class="index-bottom">
         <view class="index-content">
