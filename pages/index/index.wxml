@@ -1,13 +1,14 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <block wx:if="{{!isHide && haveClick}}">
+    <block wx:if="{{!isHide && haveClick}}" class="title">
       <image class="userinfo-avatar" bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <navigator open-type="exit" target="miniProgram">{{userInfo.nickName}}</navigator>
       <view class="cricle-ani">
         <image class="cir" src="../images/101.png" animation="{{animat}}" />
       </view>
-      <image class="cir-bg" src="../images/101.png" />
+      <image class="cir-bg1" src="../images/101.png" />
+      <image class="cir-bg2" src="../images/101.png" />
     </block>
     <block wx:else>
       <view class="login">
