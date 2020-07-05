@@ -1,29 +1,36 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <block wx:if="{{(!hasUserInfo && canIUse) || !fromLogin}}">
+    <block wx:if="{{!isHide && haveClick}}">
+      <image class="userinfo-avatar" bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <navigator open-type="exit" target="miniProgram">{{userInfo.nickName}}</navigator>
+      <view class="cricle-ani">
+        <image class="cir" src="../images/101.png" animation="{{animat}}" />
+      </view>
+    </block>
+    <block wx:else>
       <view class="login">
-        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录*-*获取 </button>
-        <button open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 天气*-*信息 </button>
+        <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 登录*-*获取 </button>
+        <button open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo"> 详细*-*天气 </button>
       </view>
       <view wx:for="{{pics}}" wx:key="index2" >
         <image src="{{item}}" class="pics-list" />
         <icon type="clear" class="uploadImg-error" size="18" data-img="{{item}}" bindtap='deleteImg'/>
       </view>
       <button class="{{pics.length ? 'upload-l' : 'upload-h'}}" bindtap="uploadImage">
-      {{pics.length ? ' 已绑定背景图片 ' : ' 请选择背景图片 '}}
+      {{pics.length ? ' 已绑定天气图片 ' : ' 请选择天气图片 '}}
       </button>
-    </block>
-    <block wx:else>
-      <image class="userinfo-avatar" bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <navigator open-type="exit" target="miniProgram">{{userInfo.nickName}}</navigator>
-      <view class="cricle-ani">
-        <!-- <view class="cir" animation="{{animat}}"></view> -->
-        <image class="cir" src="../images/101.png" animation="{{animat}}" />
+      <view class="index-bottom">
+        <view class="index-content">
+          <view class="item">{{city}}</view>
+          <view class="item">{{tmp}}℃</view>
+          <view class="item">{{wind_dir}} {{wind_sc}}级</view>
+        </view>
+        <image mode="widthFix" class="index-image" src="https://moyv.top/wechat/images/weather/{{imgsrc}}.png" />
       </view>
     </block>
   </view>
-  <view class="weather" wx:if="{{!(!hasUserInfo && canIUse) && fromLogin}}">
+  <view class="weather" wx:if="{{!isHide && haveClick}}">
     <image wx:if="{{isShow}}" class='background' src="../images/bg.jpg" mode="scaleToFill" />
     <view wx:for="{{pics}}" wx:key="index1" >
       <image src="{{item}}" class="background" mode="scaleToFill" />

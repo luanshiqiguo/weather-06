@@ -37,6 +37,22 @@ button::after {
 .login {
   margin-bottom: 100rpx;
 }
+.index-bottom {
+  display: flex;
+  justify-content: space-around;
+}
+.index-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 200rpx;
+}
+.item {
+  text-align: center;
+}
+.index-image {
+  width: 200rpx;
+}
 .weather {
   display: table;
   width: 100%;
